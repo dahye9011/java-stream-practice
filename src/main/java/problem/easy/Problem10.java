@@ -2,6 +2,7 @@ package problem.easy;
 
 import java.util.List;
 import java.util.Map;
+import java.util.stream.Collectors;
 import problem.easy.resources.Customer;
 
 public class Problem10 {
@@ -13,7 +14,7 @@ public class Problem10 {
      * @return 나이별로 그룹화된 Map
      */
     public static Map<Integer, List<Customer>> groupCustomersByAge(List<Customer> customers) {
-        // 여기에 코드 작성
-        return null;
+        return customers.stream()
+                .collect(Collectors.groupingBy(Customer::getAge));
     }
 }
