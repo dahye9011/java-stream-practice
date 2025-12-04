@@ -11,7 +11,8 @@ public class Problem29 {
      * @return 문자 개수의 총합
      */
     public static int totalCharacterCount(List<String> strings) {
-        // 여기에 코드 작성
-        return 0;
+        return strings.stream()
+                .mapToInt(String::length)
+                .sum();
     }
 }
