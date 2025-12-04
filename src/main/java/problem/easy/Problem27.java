@@ -12,7 +12,8 @@ public class Problem27 {
      * @return 평균 값 (리스트가 비어있으면 OptionalDouble.empty())
      */
     public static OptionalDouble calculateAverage(List<Integer> numbers) {
-        // 여기에 코드 작성
-        return OptionalDouble.empty();
+        return numbers.stream()
+                .mapToDouble(Integer::doubleValue)
+                .average();
     }
 }
