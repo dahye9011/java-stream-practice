@@ -11,7 +11,7 @@ public class Problem25 {
      * @return 모든 요소가 짝수이면 true, 그렇지 않으면 false
      */
     public static boolean areAllEven(List<Integer> numbers) {
-        // 여기에 코드 작성
-        return false;
+        return numbers.stream()
+                .allMatch(n -> n % 2 == 0);
     }
 }
