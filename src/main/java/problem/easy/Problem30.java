@@ -11,7 +11,8 @@ public class Problem30 {
      * @return 짝수의 개수
      */
     public static long countEvenNumbers(List<Integer> numbers) {
-        // 여기에 코드 작성
-        return 0;
+        return numbers.stream()
+                .filter(n -> n % 2 == 0)
+                .count();
     }
 }
