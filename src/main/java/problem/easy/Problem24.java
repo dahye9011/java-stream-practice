@@ -12,7 +12,7 @@ public class Problem24 {
      * @return 주어진 정수가 리스트에 존재하면 true, 그렇지 않으면 false
      */
     public static boolean containsNumber(List<Integer> numbers, int number) {
-        // 여기에 코드 작성
-        return false;
+        return numbers.stream()
+                .anyMatch(n -> n == number);
     }
 }
