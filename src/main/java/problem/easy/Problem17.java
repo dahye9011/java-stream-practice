@@ -1,6 +1,8 @@
 package problem.easy;
 
+import java.util.Arrays;
 import java.util.Map;
+import java.util.stream.Collectors;
 
 public class Problem17 {
 
@@ -12,7 +14,7 @@ public class Problem17 {
      * @return 생성된 HashMap
      */
     public static Map<String, Integer> createHashMapFromStream(String[] strings) {
-        // 여기에 코드 작성
-        return null;
+        return Arrays.stream(strings)
+                .collect(Collectors.toMap(str -> str, String::length));
     }
 }
