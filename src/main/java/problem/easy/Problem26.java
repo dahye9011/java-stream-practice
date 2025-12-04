@@ -11,7 +11,7 @@ public class Problem26 {
      * @return 하나 이상의 요소가 10보다 크면 true, 그렇지 않으면 false
      */
     public static boolean hasGreaterThanTen(List<Integer> numbers) {
-        // 여기에 코드 작성
-        return false;
+        return numbers.stream()
+                .anyMatch(n -> n > 10);
     }
 }
