@@ -16,6 +16,4 @@ public class Problem44 {
                 .mapToInt(Integer::intValue)
                 .sum();
     }
-
-
 }
