@@ -11,7 +11,8 @@ public class Problem37 {
      * @return 'a'를 포함하는 단어의 개수
      */
     public static long countWordsContainingA(List<String> words) {
-        // 여기에 코드 작성
-        return 0;
+        return words.stream()
+                .filter(str -> str.contains("a"))
+                .count();
     }
 }
