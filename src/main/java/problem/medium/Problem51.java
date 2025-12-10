@@ -13,7 +13,11 @@ public class Problem51 {
      * @return 조건을 만족하는 직원들의 이름 리스트
      */
     public static List<String> getNamesOfITDepartmentEmployeesOver30(List<Employee> employees) {
-        // 여기에 코드 작성
-        return null;
+        return employees.stream()
+                .filter(e -> e.getDepartment().equals("IT"))
+                .filter(e -> e.getAge() >= 30)
+                .map(Employee::getName)
+                .sorted()
+                .toList();
     }
 }
