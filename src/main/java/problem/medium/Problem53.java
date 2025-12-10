@@ -12,7 +12,15 @@ public class Problem53 {
      * @return 각 고객별 'Milk' 제품의 총 주문 수량을 나타내는 리스트
      */
     public static List<String> getTotalMilkOrdersForEachCustomer(List<Customer2> customers) {
-        // 여기에 코드 작성
-        return null;
+        return customers.stream()
+                .map(customer -> {
+                    int totalMilk = customer.getOrders().stream()
+                            .filter(order -> order.getProduct().equals("Milk"))
+                            .mapToInt(order -> order.getQuantity())
+                            .sum();
+
+                    return customer.getName() + ": " + totalMilk;
+                })
+                .toList();
     }
 }
