@@ -1,5 +1,6 @@
 package problem.medium;
 
+import java.util.Comparator;
 import java.util.List;
 import problem.medium.resources.Product;
 
@@ -13,7 +14,9 @@ public class Problem54 {
      * @return 최대 가격을 가진 제품의 이름, 빈 리스트인 경우 빈 문자열
      */
     public static String getMostExpensiveProductName(List<Product> products) {
-        // 여기에 코드 작성
-        return "";
+        return products.stream()
+                .max(Comparator.comparingDouble(Product::getPrice))
+                .map(Product::getName)
+                .orElse("");
     }
 }
