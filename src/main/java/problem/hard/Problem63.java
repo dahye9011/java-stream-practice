@@ -2,6 +2,7 @@ package problem.hard;
 
 import java.util.List;
 import java.util.Map;
+import java.util.stream.Collectors;
 
 public class Problem63 {
 
@@ -13,7 +14,12 @@ public class Problem63 {
      * @return 문자열 별 고유 문자 개수를 나타내는 Map
      */
     public static Map<String, Long> countUniqueCharacters(List<String> strings) {
-        // 여기에 코드 작성
-        return null;
+        return strings.stream()
+                .collect(Collectors.toMap(
+                        str -> str,
+                        str -> str.chars()
+                                .distinct()
+                                .count()
+                ));
     }
 }
