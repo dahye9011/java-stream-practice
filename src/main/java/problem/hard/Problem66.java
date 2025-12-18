@@ -1,6 +1,7 @@
 package problem.hard;
 
 import java.util.List;
+import java.util.stream.Collectors;
 
 public class Problem66 {
 
@@ -11,7 +12,10 @@ public class Problem66 {
      * @return 중복되지 않은 숫자들의 개수
      */
     public static long countUniqueNumbers(List<Integer> numbers) {
-        // 여기에 코드 작성
-        return 0;
+        return numbers.stream()
+                .collect(Collectors.groupingBy(n -> n, Collectors.counting()))
+                .values().stream()
+                .filter(cnt -> cnt == 1)
+                .count();
     }
 }
