@@ -2,6 +2,7 @@ package problem.hard;
 
 import java.util.List;
 import java.util.Map;
+import java.util.stream.Collectors;
 
 public class Problem68 {
 
@@ -13,7 +14,21 @@ public class Problem68 {
      * @return 각 숫자의 빈도와 전체 평균을 포함하는 Map
      */
     public static Map<Integer, String> calculateFrequencyAndAverage(List<Integer> numbers) {
-        // 여기에 코드 작성
-        return null;
+        Map<Integer, Long> frequencyMap = numbers.stream()
+                        .collect(Collectors.groupingBy(
+                                n -> n,
+                                Collectors.counting()
+                        ));
+
+        double avg = numbers.stream()
+                .mapToInt(Integer::intValue)
+                .average()
+                .orElse(0.0);
+
+        return frequencyMap.entrySet().stream()
+                .collect(Collectors.toMap(
+                        Map.Entry::getKey,
+                        e -> "Freq: " + e.getValue() + ", Avg: " + avg
+                ));
     }
 }
