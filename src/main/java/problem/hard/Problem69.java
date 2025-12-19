@@ -2,6 +2,7 @@ package problem.hard;
 
 import java.util.List;
 import java.util.Map;
+import java.util.stream.Collectors;
 
 public class Problem69 {
 
@@ -14,7 +15,21 @@ public class Problem69 {
      * @return 각 문자열의 알파벳 순서 대칭 점수를 포함하는 Map
      */
     public static Map<String, Integer> calculateAlphabeticalSymmetryScore(List<String> strings) {
-        // 여기에 코드 작성
-        return null;
+        return strings.stream()
+                .collect(Collectors.toMap(
+                        str -> str,
+                        str -> {
+                            int sum = 0;
+                            int n = str.length();
+
+                            for (int i = 0; i < n / 2; i++) {
+                                int left = str.charAt(i) - 'a' + 1;
+                                int right = str.charAt(n - 1 - i) - 'a' + 1;
+                                sum += Math.abs(left - right);
+                            }
+
+                            return sum;
+                        }
+                ));
     }
 }
