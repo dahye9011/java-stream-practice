@@ -2,6 +2,7 @@ package problem.hard;
 
 import java.util.List;
 import java.util.Map;
+import java.util.stream.Collectors;
 
 public class Problem70 {
 
@@ -13,7 +14,47 @@ public class Problem70 {
      * @return 각 숫자의 소수 여부와 최대 소수를 포함하는 Map
      */
     public static Map<Object, Object> identifyPrimesAndFindMax(List<Integer> numbers) {
-        // 여기에 코드 작성
-        return null;
+        final String PRIME = "Prime";
+        final String NOT_PRIME = "Not Prime";
+
+        Map<Object, Object> result = numbers.stream()
+                .collect(Collectors.toMap(
+                        n -> n,
+                        n -> {
+                            if (n < 2) {
+                                return NOT_PRIME;
+                            }
+
+                            for (int i = 2; i * i <= n; i++) {
+                                if (n % i == 0) {
+                                    return NOT_PRIME;
+                                }
+                            }
+
+                            return PRIME;
+                        }
+                ));
+
+        int maxPrime = numbers.stream()
+                .filter(n -> {
+                    if (n < 2) {
+                        return false;
+                    }
+
+                    for (int i = 2; i * i <= n; i++) {
+                        if (n % i == 0) {
+                            return false;
+                        }
+                    }
+
+                    return true;
+                })
+                .mapToInt(Integer::intValue)
+                .max()
+                .orElse(0);
+
+        result.put("Max Prime", maxPrime);
+
+        return result;
     }
 }
