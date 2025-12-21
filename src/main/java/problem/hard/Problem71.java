@@ -2,6 +2,8 @@ package problem.hard;
 
 import java.util.List;
 import java.util.Set;
+import java.util.stream.Collectors;
+import java.util.stream.IntStream;
 
 public class Problem71 {
 
@@ -13,7 +15,15 @@ public class Problem71 {
      * @return 모든 가능한 문자열 조합의 집합
      */
     public static Set<String> findAllStringCombinations(List<String> strings) {
-        // 여기에 코드 작성
-        return null;
+        int n = strings.size();
+
+        return IntStream.range(1, 1 << n)
+                .mapToObj(mask ->
+                        IntStream.range(0, n)
+                                .filter(i -> (mask & (1 << i)) != 0)
+                                .mapToObj(strings::get)
+                                .collect(Collectors.joining())
+                        )
+                .collect(Collectors.toSet());
     }
 }
