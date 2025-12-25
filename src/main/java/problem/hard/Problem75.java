@@ -2,6 +2,7 @@ package problem.hard;
 
 import java.util.List;
 import java.util.Map;
+import java.util.stream.Collectors;
 
 public class Problem75 {
 
@@ -13,7 +14,13 @@ public class Problem75 {
      * @return 각 문자열별 유니크한 문자 조합의 수를 나타내는 Map
      */
     public static Map<String, Long> countUniqueCharacterCombinations(List<String> strings) {
-        // 여기에 코드 작성
-        return null;
+        return strings.stream()
+                .collect(Collectors.toMap(
+                        s -> s,
+                        s -> {
+                            long k = s.chars().distinct().count();
+                            return (1L << k) - 1;
+                        }
+                ));
     }
 }
