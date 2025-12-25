@@ -2,6 +2,7 @@ package problem.hard;
 
 import java.util.List;
 import java.util.Map;
+import java.util.stream.Collectors;
 
 public class Problem73 {
 
@@ -14,7 +15,12 @@ public class Problem73 {
      * @return 각 문자열의 숫자 변환 점수를 나타내는 Map
      */
     public static Map<String, Integer> calculateNumericalConversionScore(List<String> strings) {
-        // 여기에 코드 작성
-        return null;
+        return strings.stream()
+                .collect(Collectors.toMap(
+                        s -> s,
+                        s -> s.chars()
+                                .map(c -> c - 'a' + 1)
+                                .sum()
+                ));
     }
 }
