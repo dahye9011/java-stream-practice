@@ -2,6 +2,7 @@ package problem.hard;
 
 import java.util.List;
 import java.util.Map;
+import java.util.stream.Collectors;
 
 public class Problem76 {
 
@@ -13,7 +14,24 @@ public class Problem76 {
      * @return 그룹화된 숫자들을 포함하는 Map
      */
     public static Map<String, List<Integer>> groupNumbersByMultipleOfFiveAndParity(List<Integer> numbers) {
-        // 여기에 코드 작성
-        return null;
+        return numbers.stream()
+                .collect(Collectors.groupingBy(n -> {
+                    String multiple;
+                    String parity;
+
+                    if (n % 5 == 0) {
+                        multiple = "5의 배수";
+                    } else {
+                        multiple = "5의 배수 아님";
+                    }
+
+                    if (n % 2 == 0) {
+                        parity = "짝수";
+                    } else {
+                        parity = "홀수";
+                    }
+
+                    return multiple + "-" + parity;
+                }));
     }
 }
