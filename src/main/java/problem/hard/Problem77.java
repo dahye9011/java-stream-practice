@@ -1,6 +1,8 @@
 package problem.hard;
 
 import java.util.List;
+import java.util.concurrent.atomic.AtomicReference;
+import java.util.stream.Collectors;
 import java.util.stream.Stream;
 
 public class Problem77 {
@@ -13,7 +15,13 @@ public class Problem77 {
      * @return 중복 없이 연속적으로 나타나는 문자열의 리스트
      */
     public static List<String> findUniqueConsecutiveStrings(Stream<String> strings) {
-        // 여기에 코드 작성
-        return null;
+        AtomicReference<String> prev = new AtomicReference<>(null);
+
+        return strings
+                .filter(curr -> {
+                    String last = prev.getAndSet(curr);
+                    return !curr.equals(last);
+                })
+                .collect(Collectors.toList());
     }
 }
