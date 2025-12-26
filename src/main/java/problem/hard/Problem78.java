@@ -1,5 +1,7 @@
 package problem.hard;
 
+import java.util.concurrent.atomic.AtomicInteger;
+import java.util.concurrent.atomic.AtomicReference;
 import java.util.stream.Stream;
 
 public class Problem78 {
@@ -12,7 +14,20 @@ public class Problem78 {
      * @return 연속된 숫자가 나타나는 최대 길이
      */
     public static int findMaxConsecutiveNumbersLength(Stream<Integer> numbers) {
-        // 여기에 코드 작성
-        return 0;
+        AtomicReference<Integer> prev = new AtomicReference<>(null);
+        AtomicInteger current = new AtomicInteger(0);
+        AtomicInteger max = new AtomicInteger(0);
+
+        numbers.forEach(n -> {
+            if (n.equals(prev.get())) {
+                current.incrementAndGet();
+            } else {
+                current.set(1);
+                prev.set(n);
+            }
+            max.set(Math.max(max.get(), current.get()));
+        });
+
+        return max.get();
     }
 }
