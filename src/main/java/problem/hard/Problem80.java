@@ -12,7 +12,10 @@ public class Problem80 {
      * @return 숫자 빈도에 따른 가중 평균
      */
     public static double calculateWeightedAverageBasedOnFrequency(List<Integer> numbers) {
-        // 여기에 코드 작성
-        return 0.0;
+        return numbers.stream()
+                .distinct()
+                .mapToInt(Integer::intValue)
+                .average()
+                .orElse(0.0);
     }
 }
