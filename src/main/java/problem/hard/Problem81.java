@@ -2,6 +2,7 @@ package problem.hard;
 
 import java.util.List;
 import java.util.Map;
+import java.util.stream.Collectors;
 import problem.hard.resources.Book;
 
 public class Problem81 {
@@ -13,7 +14,10 @@ public class Problem81 {
      * @return 출판사별 책의 평균 가격
      */
     public static Map<String, Double> calculateAverageBookPriceByPublisher(List<Book> books) {
-        // 여기에 코드 작성
-        return null;
+        return books.stream()
+                .collect(Collectors.groupingBy(
+                        b -> b.getPublisher().getName(),
+                        Collectors.averagingDouble(Book::getPrice)
+                ));
     }
 }
