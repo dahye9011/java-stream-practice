@@ -2,6 +2,7 @@ package problem.hard;
 
 import java.util.List;
 import java.util.Map;
+import java.util.stream.Collectors;
 import problem.hard.resources.Book;
 
 public class Problem82 {
@@ -13,7 +14,10 @@ public class Problem82 {
      * @return 작가별 출판한 책의 개수
      */
     public static Map<String, Long> countBooksByAuthor(List<Book> books) {
-        // 여기에 코드 작성
-        return null;
+        return books.stream()
+                .collect(Collectors.groupingBy(
+                        book -> book.getAuthor().getName(),
+                        Collectors.counting()
+                ));
     }
 }
