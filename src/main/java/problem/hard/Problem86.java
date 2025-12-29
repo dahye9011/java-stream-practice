@@ -2,6 +2,7 @@ package problem.hard;
 
 import java.util.List;
 import java.util.Map;
+import java.util.stream.Collectors;
 import problem.hard.resources.Order;
 
 public class Problem86 {
@@ -13,7 +14,10 @@ public class Problem86 {
      * @return 제품별 판매된 총 수량
      */
     public static Map<String, Integer> calculateTotalQuantitySoldByProduct(List<Order> orders) {
-        // 여기에 코드 작성
-        return null;
+        return orders.stream()
+                .collect(Collectors.groupingBy(
+                        order -> order.getProduct().getName(),
+                        Collectors.summingInt(Order::getQuantity)
+                ));
     }
 }
