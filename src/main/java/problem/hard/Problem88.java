@@ -1,7 +1,9 @@
 package problem.hard;
 
+import java.util.Comparator;
 import java.util.List;
 import java.util.Map;
+import java.util.stream.Collectors;
 import problem.hard.resources.Customer;
 import problem.hard.resources.Order;
 
@@ -14,7 +16,13 @@ public class Problem88 {
      * @return 각 고객별로 가장 높은 가격의 주문
      */
     public static Map<String, Order> findHighestPricedOrderPerCustomer(List<Customer> customers) {
-        // 여기에 코드 작성
-        return null;
+        return customers.stream()
+                .filter(c -> !c.getOrders().isEmpty())
+                .collect(Collectors.toMap(
+                        Customer::getName,
+                        c -> c.getOrders().stream()
+                                .max(Comparator.comparingDouble(o -> o.getProduct().getPrice()))
+                                .get()
+                ));
     }
 }
