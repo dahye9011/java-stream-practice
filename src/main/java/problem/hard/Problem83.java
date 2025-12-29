@@ -1,6 +1,7 @@
 package problem.hard;
 
 import java.util.List;
+import java.util.stream.Collectors;
 import problem.hard.resources.Book;
 
 public class Problem83 {
@@ -13,7 +14,8 @@ public class Problem83 {
      * @return 특정 장르에 속하는 책 리스트
      */
     public static List<Book> findBooksByGenre(List<Book> books, String genre) {
-        // 여기에 코드 작성
-        return null;
+        return books.stream()
+                .filter(book -> book.getAuthor().getGenre().equals(genre))
+                .collect(Collectors.toList());
     }
 }
