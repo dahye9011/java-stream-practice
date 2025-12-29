@@ -2,6 +2,7 @@ package problem.hard;
 
 import java.util.List;
 import java.util.Map;
+import java.util.stream.Collectors;
 import problem.hard.resources.Publisher;
 
 public class Problem84 {
@@ -13,7 +14,9 @@ public class Problem84 {
      * @return 주소별 출판사 목록
      */
     public static Map<String, List<Publisher>> findPublishersByAddress(List<Publisher> publishers) {
-        // 여기에 코드 작성
-        return null;
+        return publishers.stream()
+                .collect(Collectors.groupingBy(
+                        Publisher::getAddress
+                ));
     }
 }
