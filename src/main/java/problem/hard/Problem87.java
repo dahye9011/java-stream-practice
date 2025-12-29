@@ -13,7 +13,8 @@ public class Problem87 {
      * @return 가격이 임계값 이상인 제품의 주문 리스트
      */
     public static List<Order> findOrdersWithProductsPricedAbove(List<Order> orders, double priceThreshold) {
-        // 여기에 코드 작성
-        return null;
+        return orders.stream()
+                .filter(order -> order.getProduct().getPrice() >= priceThreshold)
+                .toList();
     }
 }
