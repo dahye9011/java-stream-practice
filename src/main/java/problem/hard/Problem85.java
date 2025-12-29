@@ -2,6 +2,7 @@ package problem.hard;
 
 import java.util.List;
 import java.util.Map;
+import java.util.stream.Collectors;
 import problem.hard.resources.Customer;
 
 public class Problem85 {
@@ -13,7 +14,12 @@ public class Problem85 {
      * @return 고객별 총 주문 금액
      */
     public static Map<String, Double> calculateTotalOrderAmountByCustomer(List<Customer> customers) {
-        // 여기에 코드 작성
-        return null;
+        return customers.stream()
+                .collect(Collectors.toMap(
+                        Customer::getName,
+                        customer -> customer.getOrders().stream()
+                                .mapToDouble(o -> o.getProduct().getPrice() * o.getQuantity())
+                                .sum()
+                ));
     }
 }
